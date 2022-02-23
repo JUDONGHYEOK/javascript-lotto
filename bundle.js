@@ -1118,13 +1118,13 @@ var __webpack_exports__ = {};
   !*** ./src/index.js ***!
   \**********************/
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _css_index_css__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./css/index.css */ "./src/css/index.css");
-/* harmony import */ var _css_toggle_css__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./css/toggle.css */ "./src/css/toggle.css");
-/* harmony import */ var _js_app_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./js/app.js */ "./src/js/app.js");
+/* harmony import */ var _css_index__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./css/index */ "./src/css/index.css");
+/* harmony import */ var _css_toggle__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./css/toggle */ "./src/css/toggle.css");
+/* harmony import */ var _js_app__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./js/app */ "./src/js/app.js");
 
 
 
-(0,_js_app_js__WEBPACK_IMPORTED_MODULE_2__["default"])();
+(0,_js_app__WEBPACK_IMPORTED_MODULE_2__["default"])();
 })();
 
 /******/ })()

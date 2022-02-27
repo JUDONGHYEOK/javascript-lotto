@@ -5,7 +5,6 @@ export default class Lotto {
   constructor(strategy) {
     this.pickStrategy = strategy;
   }
-
   get numbers() {
     return this.#numbers;
   }

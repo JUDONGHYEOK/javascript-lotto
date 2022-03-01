@@ -1,6 +1,7 @@
 import { LOTTO } from "../constants/constants.js";
 import Lotto from "../domains/Lotto.js";
 import validateMoney from "../validations/LottoMachine.js";
+import LottoStrategy from "./LottoStrategy.js";
 export default class LottoMachine {
   #inputMoney = 0;
   #lottos = [];
@@ -30,10 +31,6 @@ export default class LottoMachine {
   generateLottos() {
     return Array(this.lottoQuantity)
       .fill()
-      .map(() => {
-        const lotto = new Lotto();
-        lotto.pickNumbers();
-        return lotto;
-      });
+      .map(() => new Lotto(new LottoStrategy()).generate());
   }
 }

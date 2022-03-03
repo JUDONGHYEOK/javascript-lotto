@@ -1,10 +1,17 @@
-import { LOTTO } from "../constants/constants.js";
-import Lotto from "../domains/Lotto.js";
-import validateMoney from "../validations/LottoMachine.js";
-import LottoStrategy from "./LottoStrategy.js";
+import { LOTTO } from '../constants/constants.js';
+import Lotto from '../domains/Lotto.js';
+import validateMoney from '../validations/LottoMachine.js';
+import LottoStrategy from './LottoStrategy.js';
 export default class LottoMachine {
-  #inputMoney = 0;
-  #lottos = [];
+  #inputMoney;
+  #lottos;
+  #strategy;
+
+  constructor() {
+    this.#inputMoney = 0;
+    this.#lottos = [];
+    this.#strategy = new LottoStrategy();
+  }
 
   get inputMoney() {
     return this.#inputMoney;
@@ -23,6 +30,10 @@ export default class LottoMachine {
     return this.#inputMoney / LOTTO.PRICE;
   }
 
+  updateStrategy(strategy) {
+    this.#strategy = strategy;
+  }
+
   operateLottoMachine() {
     this.#lottos = this.generateLottos();
     this.#inputMoney = 0;
@@ -31,6 +42,12 @@ export default class LottoMachine {
   generateLottos() {
     return Array(this.lottoQuantity)
       .fill()
-      .map(() => new Lotto(new LottoStrategy()).generate());
+      .map(() => new Lotto(this.#strategy).generate());
+  }
+
+  calculateGrade(winningNumbers, bonusNumber) {
+    this.#lottos.forEach((lotto) =>
+      lotto.generateGrade(winningNumbers, bonusNumber)
+    );
   }
 }

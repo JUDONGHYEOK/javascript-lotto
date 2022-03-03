@@ -1,25 +1,26 @@
-import LottoMachine from "../domains/LottoMachine.js";
-import $ from "./utils.js";
+import LottoMachine from '../domains/LottoMachine.js';
+import $ from './utils.js';
 import {
   ticketImg,
   lottoNumberTemplate,
-  purchaseMessageTemplate,
-} from "./template.js";
-import { DOM } from "../constants/constants.js";
+  purchaseMessageTemplate
+} from './template.js';
+import { DOM } from '../constants/constants.js';
 
 export default class LottoView {
   constructor() {
     this.machine = new LottoMachine();
+    this.$lottoResultContainer = $(DOM.ID.LOTTO_RESULT_CONTAINER);
     this.bindEvents();
   }
 
   bindEvents() {
     $(DOM.ID.PURCHASE_MONEY_FORM).addEventListener(
-      "submit",
+      'submit',
       this.handlePurchaseForm.bind(this)
     );
     $(DOM.ID.LOTTO_RESULT_TOGGLE).addEventListener(
-      "click",
+      'click',
       this.handleResultToggle.bind(this)
     );
   }
@@ -47,7 +48,7 @@ export default class LottoView {
   }
 
   renderLotto() {
-    $(DOM.ID.LOTTO_RESULT_CONTAINER).replaceChildren();
+    this.$lottoResultContainer.replaceChildren();
     $(DOM.ID.TOGGLE_CHECKBOX).checked
       ? this.renderLottoNumbers()
       : this.renderLottoImgs();
@@ -55,18 +56,15 @@ export default class LottoView {
 
   renderLottoImgs() {
     this.machine.lottos.map(() => {
-      $(DOM.ID.LOTTO_RESULT_CONTAINER).insertAdjacentHTML(
-        "beforeEnd",
-        ticketImg
-      );
+      this.$lottoResultContainer.insertAdjacentHTML('beforeEnd', ticketImg);
     });
   }
 
   renderLottoNumbers() {
     this.machine.lottos.map((lotto) => {
-      $(DOM.ID.LOTTO_RESULT_CONTAINER).insertAdjacentHTML(
-        "beforeEnd",
-        lottoNumberTemplate(lotto.numbers.join(", "))
+      this.$lottoResultContainer.insertAdjacentHTML(
+        'beforeEnd',
+        lottoNumberTemplate(lotto.numbers.join(', '))
       );
     });
   }

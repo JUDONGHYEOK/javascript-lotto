@@ -34,6 +34,8 @@ export default class LottoView {
       this.renderLotto();
       this.disablePurchase();
       this.showLottoContainers();
+      this.focusWinningNumberForm();
+      this.bindEventsToResultForm();
     } catch (e) {
       alert(e.message);
     }
@@ -83,5 +85,20 @@ export default class LottoView {
   showLottoContainers() {
     $(DOM.ID.LOTTO_RESULT_SECTION).hidden = false;
     $(DOM.ID.WINNING_NUMBER_FORM).hidden = false;
+  }
+
+  focusWinningNumberForm() {
+    document.querySelector('.winning-number-input').focus();
+  }
+
+  bindEventsToResultForm() {
+    $('winning-number-form').addEventListener(
+      'submit',
+      this.handleResultForm.bind(this)
+    );
+  }
+
+  handleResultForm(e) {
+    e.preventDefault();
   }
 }

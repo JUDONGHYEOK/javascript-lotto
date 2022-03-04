@@ -135,6 +135,9 @@ export default class LottoView {
     )}개</span></div>
  `
       );
+      $(
+        'lotto-result-rate'
+      ).textContent = `당신의 총 수익률은 ${this.machine.profitRate}%입니다.`;
       $('modal').style.display = 'flex';
       $('modal-close').addEventListener('click', this.closeModal.bind(this));
       $('restart').addEventListener('click', this.restart.bind(this));
@@ -160,5 +163,6 @@ export default class LottoView {
     $('purchase-money-input').value = '';
     $('purchase-money-input').disabled = false;
     $('purchase-money-button').disabled = false;
+    $(DOM.ID.TOGGLE_CHECKBOX).checked = false;
   }
 }

@@ -1656,7 +1656,7 @@ var __webpack_exports__ = {};
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _css_index_css__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./css/index.css */ "./src/css/index.css");
 /* harmony import */ var _css_toggle_css__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./css/toggle.css */ "./src/css/toggle.css");
-/* harmony import */ var _css_modal__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./css/modal */ "./src/css/modal.css");
+/* harmony import */ var _css_modal_css__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./css/modal.css */ "./src/css/modal.css");
 /* harmony import */ var _js_app_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./js/app.js */ "./src/js/app.js");
 
 

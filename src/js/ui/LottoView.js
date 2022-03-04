@@ -105,8 +105,6 @@ export default class LottoView {
     ).map(({ value }) => Number.parseInt(value));
     const bonusNumber = winningNumbers.pop();
     this.machine.calculateGrade(winningNumbers, bonusNumber);
-    console.log(this.machine.lottos);
-    console.log(winningNumbers, bonusNumber);
     $('modal').style.display = 'flex';
   }
 }

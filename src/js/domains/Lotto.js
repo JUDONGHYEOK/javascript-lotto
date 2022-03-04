@@ -1,4 +1,3 @@
-import { LOTTO } from '../constants/constants.js';
 import LottoResultFactory from './LottoResultFactory.js';
 export default class Lotto {
   #numbers = [];

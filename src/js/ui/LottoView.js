@@ -87,6 +87,11 @@ export default class LottoView {
     $(DOM.ID.WINNING_NUMBER_FORM).hidden = false;
   }
 
+  hideLottoContainers() {
+    $(DOM.ID.LOTTO_RESULT_SECTION).hidden = true;
+    $(DOM.ID.WINNING_NUMBER_FORM).hidden = true;
+  }
+
   focusWinningNumberForm() {
     document.querySelector('.winning-number-input').focus();
   }
@@ -127,5 +132,10 @@ export default class LottoView {
  `
     );
     $('modal').style.display = 'flex';
+    $('modal-close').addEventListener('click', this.closeModal.bind(this));
+    $('restart').addEventListener('click', this.restart.bind(this));
+  }
+  closeModal() {
+    $('modal').style.display = 'none';
   }
 }

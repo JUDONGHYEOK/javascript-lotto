@@ -7,12 +7,14 @@ import {
 } from './template.js';
 import { DOM } from '../constants/constants.js';
 import { validateArrayNumber } from '../validations/utils.js';
+import { LottoModal } from './LottoModal.js';
 
 export default class LottoView {
   constructor() {
     this.machine = new LottoMachine();
     this.$lottoResultContainer = $(DOM.ID.LOTTO_RESULT_CONTAINER);
     this.bindEvents();
+    this.lottoModal = new LottoModal(this, this.machine);
   }
 
   bindEvents() {
@@ -106,57 +108,16 @@ export default class LottoView {
 
   handleResultForm(e) {
     e.preventDefault();
-
-    const winningNumbers = Array.from(
-      document.querySelectorAll('.winning-number-input')
-    ).map(({ value }) => Number.parseInt(value));
-    try {
-      validateArrayNumber(winningNumbers);
-      const bonusNumber = winningNumbers.pop();
-      this.machine.calculateGrade(winningNumbers, bonusNumber);
-      $('lotto-result-table').replaceChildren();
-      $('lotto-result-table').insertAdjacentHTML(
-        'beforeend',
-        `  <div class="grid table-title"><span>일치 갯수</span><span>당첨금</span><span>당첨 갯수</span></div>
-    <div class="grid"><span>3개</span><span>5,000</span><span>${this.machine.getNumberOfGrade(
-      'fifth'
-    )}개</span></div>
-    <div class="grid"><span>4개</span><span>50,000</span><span>${this.machine.getNumberOfGrade(
-      'fourth'
-    )}개</span></div>
-    <div class="grid"><span>5개</span><span>1,500,000</span><span>${this.machine.getNumberOfGrade(
-      'third'
-    )}개</span></div>
-    <div class="grid"><span>5개+보너스볼</span><span>30,000,000</span><span>${this.machine.getNumberOfGrade(
-      'second'
-    )}개</span></div>
-    <div class="grid"><span>6개</span><span>2,000,000,000</span><span>${this.machine.getNumberOfGrade(
-      'first'
-    )}개</span></div>
- `
-      );
-      $(
-        'lotto-result-rate'
-      ).textContent = `당신의 총 수익률은 ${this.machine.profitRate}%입니다.`;
-      $('modal').style.display = 'flex';
-      $('modal-close').addEventListener('click', this.closeModal.bind(this));
-      $('restart').addEventListener('click', this.restart.bind(this));
-    } catch (e) {
-      alert(e.message);
-    }
-  }
-  closeModal() {
-    $('modal').style.display = 'none';
+    this.lottoModal.show(this.machine);
   }
 
   restart() {
     this.hideLottoContainers();
-    this.machine = new LottoMachine();
     this.reactivatePurchaseForm();
+    this.machine = new LottoMachine();
   }
 
   reactivatePurchaseForm() {
-    this.closeModal();
     document
       .querySelectorAll('.winning-number-input')
       .forEach((element) => (element.value = ''));
